@@ -6,6 +6,6 @@
 pydantic>=2.9,<3
 defusedxml>=0.7,<0.8
 xmlschema>=3.4,<5
-ruff==0.15.21
+ruff==0.15.22
 black==26.5.1
 mypy>=1.11,<3.0
