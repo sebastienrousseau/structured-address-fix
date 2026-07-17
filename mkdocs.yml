@@ -1,0 +1,52 @@
+site_name: structured-address-fix
+site_description: >-
+  ISO 20022 structured-address remediation and payment-rejection prevention
+  for the 14 November 2026 cliff.
+site_url: https://sebastienrousseau.github.io/structured-address-fix/
+repo_url: https://github.com/sebastienrousseau/structured-address-fix
+repo_name: sebastienrousseau/structured-address-fix
+copyright: Copyright &copy; 2023-2026 Sebastien Rousseau — Apache-2.0
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Policies: policies.md
+  - Remediation model: remediation-model.md
+  - Error taxonomy: error-taxonomy.md
+  - Writing a rule pack: writing-a-rule-pack.md
+  - November 2026 cutover: nov-2026-cutover.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+
+plugins:
+  - search

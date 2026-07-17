@@ -108,5 +108,5 @@ payment.
 - [The November 2026 cutover](nov-2026-cutover.md) — the deadline in context.
 
 > The `assess` / `remediate` facade, the built-in policy rulebooks, and the
-> XML adapters land in the v0.1.x series (see [`../ROADMAP.md`](../ROADMAP.md)).
+> XML adapters land in the v0.1.x series (see [`../ROADMAP.md`](https://github.com/sebastienrousseau/structured-address-fix/blob/main/ROADMAP.md)).
 > The `CanonicalAddress` classification shown above works today.

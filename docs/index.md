@@ -39,4 +39,4 @@ across SWIFT CBPR+, HVPS+, T2 RTGS, CHAPS, Fedwire, and Lynx.
 
 The domain layer and error taxonomy shipped in v0.0.2. The policies, adapters,
 and services facade land in the v0.0.x series; see
-[`../ROADMAP.md`](../ROADMAP.md).
+[`../ROADMAP.md`](https://github.com/sebastienrousseau/structured-address-fix/blob/main/ROADMAP.md).
