@@ -17,13 +17,15 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 import pytest
 
-_EXAMPLES_DIR = Path(__file__).parents[1] / "examples"
+_REPO_ROOT = Path(__file__).parents[1]
+_EXAMPLES_DIR = _REPO_ROOT / "examples"
 _SCRIPTS = sorted(_EXAMPLES_DIR.glob("*.py"))
 
 
@@ -34,13 +36,23 @@ def test_examples_directory_is_populated() -> None:
 
 @pytest.mark.parametrize("script", _SCRIPTS, ids=[s.name for s in _SCRIPTS])
 def test_example_runs_cleanly(script: Path) -> None:
-    """Run the example as a subprocess and assert exit code 0."""
+    """Run the example as a subprocess and assert exit code 0.
+
+    The repo root is placed on ``PYTHONPATH`` so the example can import
+    the in-tree package even when it is not pip-installed (the suite's CI
+    runs from a working-tree checkout, not an installed wheel).
+    """
+    env = dict(os.environ)
+    env["PYTHONPATH"] = os.pathsep.join(
+        [str(_REPO_ROOT), env.get("PYTHONPATH", "")]
+    ).rstrip(os.pathsep)
     completed = subprocess.run(
         [sys.executable, str(script)],
         capture_output=True,
         text=True,
         timeout=60,
         check=False,
+        env=env,
     )
 
     assert completed.returncode == 0, (
