@@ -39,7 +39,7 @@ from structured_address_fix.domain import (
     ValidationReport,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.0.1"
 
 __all__ = [
     "AddressClassification",

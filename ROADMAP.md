@@ -10,7 +10,7 @@ non-compliant postal addresses in payment messages ahead of the
 **14 November 2026** CBPR+ / HVPS+ / T2 / CHAPS / Fedwire cliff, with a
 domain model that supersedes and generalises `pacs008.standards.address`.
 
-## Where we are (v0.1.0, 2026-07-17)
+## Where we are (v0.0.1, 2026-07-17)
 
 - **Domain layer** — Pydantic v2 entities: `CanonicalAddress`
   (ISO 20022 `PostalAddress27`, self-classifying into structured / hybrid /
@@ -24,7 +24,7 @@ domain model that supersedes and generalises `pacs008.standards.address`.
 - **Configuration** — the load-bearing `NOV_2026_CLIFF` constant and the
   overridable default policy id.
 
-## v0.1.x — built-in policies, adapters, and the services facade
+## v0.0.x — built-in policies, adapters, and the services facade
 
 Goal: a complete, self-contained core that assesses and remediates a message
 end to end.

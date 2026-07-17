@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2026-07-17
+## [0.0.1] - 2026-07-17
 
 The **initial release**: the core domain model, error taxonomy, and
 configuration for ISO 20022 postal-address remediation ahead of the
@@ -52,7 +52,7 @@ server will build on.
 ### Notes
 
 - The built-in policy rulebooks, XML adapters, per-country heuristics, and the
-  `assess` / `remediate` services facade are on the v0.1.x roadmap; see
+  `assess` / `remediate` services facade are on the v0.0.x roadmap; see
   [`ROADMAP.md`](ROADMAP.md).
 
-[0.1.0]: https://github.com/sebastienrousseau/structured-address-fix/releases/tag/v0.1.0
+[0.0.1]: https://github.com/sebastienrousseau/structured-address-fix/releases/tag/v0.0.1
