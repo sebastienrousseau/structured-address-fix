@@ -63,7 +63,6 @@ class _EntryPointLike(Protocol):
 
     def load(self) -> type[PolicyPack]:
         """Import and return the referenced :class:`PolicyPack` subclass."""
-        ...
 
 
 class PolicyRegistry:

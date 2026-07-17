@@ -182,11 +182,9 @@ class AddressPolicy(Protocol):
         self, address: CanonicalAddress, ctx: PolicyContext
     ) -> list[RiskFinding]:
         """Return every risk finding this policy raises for ``address``."""
-        ...
 
     def target(self, address: CanonicalAddress) -> CanonicalAddress:
         """Return the ideal compliant shape of ``address`` for this policy."""
-        ...
 
 
 class BasePolicy(abc.ABC):
