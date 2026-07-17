@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Hash-pinned install (supply-chain hardening). The local package itself
+      # is imported via ``python -m pytest`` (repo root on sys.path) so no
+      # unpinnable ``pip install -e .`` is required. The 100% line + branch
+      # coverage gate is enforced by pyproject's ``--cov-fail-under=100``.
+      - name: Install dependencies (hash-pinned)
+        run: pip install --require-hashes -r requirements/test.txt
+
+      - name: Run tests
+        run: python -m pytest tests/ -v --tb=short
+
+      - name: Enforce 100% docstring coverage
+        run: interrogate -c pyproject.toml structured_address_fix
+
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install lint tools (hash-pinned)
+        run: pip install --require-hashes -r requirements/lint.txt
+
+      - name: Ruff check
+        run: ruff check structured_address_fix/
+
+      - name: Black check
+        run: black --check structured_address_fix/ tests/
+
+      - name: Mypy
+        run: mypy structured_address_fix/
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Install bandit (hash-pinned)
+        run: pip install --require-hashes -r requirements/security.txt
+      - name: Bandit
+        run: bandit -r structured_address_fix/ -ll

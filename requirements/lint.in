@@ -1,0 +1,11 @@
+# Lint/type-check tooling for the CI "lint" job.
+# Runtime deps (pydantic, defusedxml, xmlschema) are included so mypy
+# --strict can resolve the models' types rather than treating them as
+# untyped. ruff/black are pinned to the exact versions the CI lint job
+# uses so the check stays deterministic across uv recompiles.
+pydantic>=2.9,<3
+defusedxml>=0.7,<0.8
+xmlschema>=3.4,<5
+ruff==0.15.21
+black==26.5.1
+mypy>=1.11,<3.0

@@ -1,0 +1,9 @@
+{
+  "reject_unstructured": "CBPR+ UG2026: fully unstructured postal addresses are rejected from 14 November 2026.",
+  "mandatory_country": "CBPR+ UG2026: Country (Ctry) is mandatory for cross-border payments.",
+  "mandatory_town": "CBPR+ UG2026: Town Name (TwnNm) is required for the hybrid minimum bar.",
+  "hybrid_residual": "CBPR+ UG2026: hybrid addresses may retain at most two residual AdrLine.",
+  "non_iso_country": "ISO 3166-1: Country must be a valid alpha-2 code.",
+  "adrline_overflow": "ISO 20022: AdrLine is limited to seven lines of 70 characters.",
+  "structured_overflow": "ISO 20022 PostalAddress27: structured elements have fixed maximum lengths."
+}

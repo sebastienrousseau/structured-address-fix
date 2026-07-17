@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
+  <FIToFICstmrCdtTrf>
+    <GrpHdr>
+      <MsgId>MSG-0001</MsgId>
+      <CreDtTm>2026-07-15T09:30:00</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+    </GrpHdr>
+    <CdtTrfTxInf>
+      <Dbtr>
+        <Nm>Acme Debtor Ltd</Nm>
+        <PstlAdr>
+          <StrtNm>High Street</StrtNm>
+          <BldgNb>42</BldgNb>
+          <PstCd>SW1A 1AA</PstCd>
+          <TwnNm>London</TwnNm>
+          <Ctry>GB</Ctry>
+        </PstlAdr>
+      </Dbtr>
+      <DbtrAgt>
+        <FinInstnId>
+          <Nm>Debtor Bank</Nm>
+          <PstlAdr>
+            <StrtNm>Bankstrasse</StrtNm>
+            <BldgNb>1</BldgNb>
+            <PstCd>10117</PstCd>
+            <TwnNm>Berlin</TwnNm>
+            <Ctry>DE</Ctry>
+          </PstlAdr>
+        </FinInstnId>
+      </DbtrAgt>
+      <CdtrAgt>
+        <FinInstnId>
+          <Nm>Creditor Bank</Nm>
+          <PstlAdr>
+            <StrtNm>Rue de la Paix</StrtNm>
+            <BldgNb>7</BldgNb>
+            <PstCd>75001</PstCd>
+            <TwnNm>Paris</TwnNm>
+            <Ctry>FR</Ctry>
+          </PstlAdr>
+        </FinInstnId>
+      </CdtrAgt>
+      <Cdtr>
+        <Nm>Beta Creditor GmbH</Nm>
+        <PstlAdr>
+          <Ctry>US</Ctry>
+          <AdrLine>1 Infinite Loop</AdrLine>
+          <AdrLine>Cupertino CA 95014</AdrLine>
+        </PstlAdr>
+      </Cdtr>
+    </CdtTrfTxInf>
+  </FIToFICstmrCdtTrf>
+</Document>

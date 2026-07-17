@@ -1,0 +1,7 @@
+{
+  "mandatory_town": "SEPA rulebook: Town Name is required in the postal address.",
+  "mandatory_country": "SEPA rulebook: Country is required in the postal address.",
+  "adrline_cap": "SEPA rulebook: at most two AdrLine of 70 characters are permitted.",
+  "non_iso_country": "ISO 3166-1: Country must be a valid alpha-2 code.",
+  "structured_overflow": "ISO 20022 PostalAddress27: structured elements have fixed maximum lengths."
+}

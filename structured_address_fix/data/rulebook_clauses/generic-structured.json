@@ -1,0 +1,5 @@
+{
+  "non_iso_country": "ISO 3166-1: Country must be a valid alpha-2 code.",
+  "adrline_overflow": "ISO 20022: AdrLine is limited to seven lines of 70 characters.",
+  "structured_overflow": "ISO 20022 PostalAddress27: structured elements have fixed maximum lengths."
+}

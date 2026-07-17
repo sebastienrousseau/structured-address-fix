@@ -1,0 +1,129 @@
+[tool.poetry]
+name = "structured-address-fix"
+version = "0.1.0"
+description = "ISO 20022 structured-address remediation and payment-rejection prevention for the November 2026 cliff."
+authors = ["Sebastien Rousseau <sebastian.rousseau@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/sebastienrousseau/structured-address-fix"
+homepage = "https://sebastienrousseau.github.io/structured-address-fix/"
+keywords = ["iso20022", "cbpr", "postal-address", "pacs008", "payments", "remediation"]
+packages = [
+    { include = "structured_address_fix" },
+]
+include = [
+    "structured_address_fix/data/**/*.json",
+    "structured_address_fix/data/**/*.txt",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+pydantic = ">=2.9,<3"
+defusedxml = ">=0.7,<0.8"
+xmlschema = ">=3.4,<5"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=9.0.3,<10.0.0"
+pytest-cov = ">=6.0.0,<8.0.0"
+hypothesis = ">=6,<7"
+black = "^26.3.1"
+ruff = ">=0.1,<0.16"
+mypy = ">=1.11,<3.0"
+interrogate = "^1.7"
+bandit = "^1.7.0"
+
+[tool.interrogate]
+fail-under = 100
+ignore-init-module = true
+ignore-magic = true
+verbose = 1
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ['py312']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--tb=short",
+    "--cov=structured_address_fix",
+    "--cov-branch",
+    "--cov-report=term-missing",
+    "--cov-fail-under=100",
+    "-m", "not perf and not stress",
+]
+markers = [
+    "perf: performance/benchmark tests (excluded from the coverage gate)",
+    "stress: load/stress and soak tests (excluded from the coverage gate)",
+]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_also = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.ruff]
+line-length = 79
+target-version = "py312"
+extend-exclude = ["*.md", ".venv", ".eggs"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/conftest.py" = ["E402"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+check_untyped_defs = true
+strict_equality = true
+plugins = ["pydantic.mypy"]
+exclude = [
+    ".venv/",
+    ".eggs/",
+]
+
+[[tool.mypy.overrides]]
+module = "defusedxml.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "xmlschema.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+disallow_untyped_calls = false
+warn_unused_ignores = false

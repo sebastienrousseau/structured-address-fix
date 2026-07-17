@@ -1,0 +1,9 @@
+{
+  "reject_unstructured": "HVPS+ market practice: unstructured addresses are rejected from 14 November 2026.",
+  "mandatory_country": "HVPS+ market practice: Country is mandatory.",
+  "mandatory_town": "HVPS+ market practice: Town Name is required.",
+  "structured_only": "HVPS+ market practice: fully structured addresses are required; residual AdrLine is disallowed.",
+  "non_iso_country": "ISO 3166-1: Country must be a valid alpha-2 code.",
+  "adrline_overflow": "ISO 20022: AdrLine is limited to seven lines of 70 characters.",
+  "structured_overflow": "ISO 20022 PostalAddress27: structured elements have fixed maximum lengths."
+}
