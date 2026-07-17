@@ -10,7 +10,7 @@ non-compliant postal addresses in payment messages ahead of the
 **14 November 2026** CBPR+ / HVPS+ / T2 / CHAPS / Fedwire cliff, with a
 domain model that supersedes and generalises `pacs008.standards.address`.
 
-## Where we are (v0.0.1, 2026-07-17)
+## Where we are (v0.0.2, 2026-07-17)
 
 - **Domain layer** — Pydantic v2 entities: `CanonicalAddress`
   (ISO 20022 `PostalAddress27`, self-classifying into structured / hybrid /

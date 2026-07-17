@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "structured-address-fix"
-version = "0.0.1"
+version = "0.0.2"
 description = "ISO 20022 structured-address remediation and payment-rejection prevention for the November 2026 cliff."
 authors = ["Sebastien Rousseau <sebastian.rousseau@gmail.com>"]
 license = "Apache-2.0"

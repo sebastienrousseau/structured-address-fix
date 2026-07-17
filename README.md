@@ -181,7 +181,7 @@ for suggestion in result.suggestions:
 > The built-in policies, XML adapters, per-country heuristics, and the
 > `assess` / `remediate` facade land in the v0.0.x series; see
 > [`ROADMAP.md`](ROADMAP.md). The domain model and error taxonomy shipped in
-> v0.0.1 and are stable.
+> v0.0.2 and are stable.
 
 ## Architecture
 

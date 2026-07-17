@@ -37,6 +37,6 @@ across SWIFT CBPR+, HVPS+, T2 RTGS, CHAPS, Fedwire, and Lynx.
 | Services | `structured_address_fix.services` | The `assess` / `remediate` facade |
 | Plugins | `structured_address_fix.plugins` | The premium rule-pack SDK |
 
-The domain layer and error taxonomy shipped in v0.0.1. The policies, adapters,
+The domain layer and error taxonomy shipped in v0.0.2. The policies, adapters,
 and services facade land in the v0.0.x series; see
 [`../ROADMAP.md`](../ROADMAP.md).
