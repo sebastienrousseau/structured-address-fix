@@ -141,6 +141,12 @@ open-source project, and are recorded here so their status is explicit.
 - **Maintained** — a heuristic over recent commit/issue cadence that can lag
   immediately after a release lull. The project is actively maintained (see
   the commit history and the lockstep release process).
+- **Fuzzing** — no continuous fuzzing harness ships in v0.1. The parsing
+  surface is small and defusedxml-backed, and inputs are exercised by the
+  property-based test suite; a ClusterFuzzLite target may be added in a
+  later release. Accepted for now.
+- **CII-Best-Practices** — the project is not yet registered for an OpenSSF
+  Best Practices badge (a manual enrolment). Accepted until enrolled.
 
 All **code-fixable** Scorecard checks are satisfied: Pinned-Dependencies
 (SHA-pinned GitHub Actions + hash-pinned `pip` installs), Token-Permissions
