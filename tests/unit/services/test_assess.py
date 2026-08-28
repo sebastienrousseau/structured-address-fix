@@ -61,7 +61,7 @@ def test_assess_unstructured_address_rejects(
     assert any(f.rejects_payment for f in report.findings)
 
 
-def test_assess_wording_differs_across_the_cliff(
+def test_assess_wording_reports_the_deferral(
     gb_unstructured: CanonicalAddress, pre_cliff: date, post_cliff: date
 ) -> None:
     """The cliff phrase changes on either side of the deadline."""
@@ -74,8 +74,11 @@ def test_assess_wording_differs_across_the_cliff(
 
     before_msg = " ".join(f.message for f in before.findings)
     after_msg = " ".join(f.message for f in after.findings)
-    assert "in force from" in before_msg
-    assert "since" in after_msg
+    # The wording no longer turns on the calendar, because Swift withdrew the
+    # date it turned on. Both sides report the deferral instead.
+    for msg in (before_msg, after_msg):
+        assert "deferred" in msg
+        assert "since 14 November 2026" not in msg
 
 
 def test_assess_address_accepts_country_hint(

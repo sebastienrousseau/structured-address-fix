@@ -96,7 +96,7 @@ def test_overflow_flagged(overflow: CanonicalAddress) -> None:
     }
 
 
-def test_cliff_wording_before_and_after(
+def test_cliff_wording_reports_the_deferral(
     unstructured: CanonicalAddress,
 ) -> None:
     """The unstructured message wording tracks the assessment date."""
@@ -112,8 +112,12 @@ def test_cliff_wording_before_and_after(
     after_msg = next(
         f.message for f in after if f.code is FindingCode.UNSTRUCTURED_ONLY
     )
-    assert "in force from" in before_msg
-    assert "since" in after_msg
+    # No date binds, so neither reading of the calendar puts the requirement
+    # in force. Both messages say the timing was deferred, and neither claims
+    # the rule already bites.
+    for msg in (before_msg, after_msg):
+        assert "deferred" in msg
+        assert "since 14 November 2026" not in msg
 
 
 def test_target_clears_residual(hybrid: CanonicalAddress) -> None:
