@@ -30,6 +30,7 @@ from structured_address_fix.domain import (
     MessageType,
     Severity,
 )
+from structured_address_fix.policies import base
 from structured_address_fix.policies.base import (
     ISO_STRUCTURED_LIMITS,
     AddressPolicy,
@@ -319,12 +320,31 @@ def test_compact_flattens_none_list_and_single(probe: _Probe) -> None:
     assert result == [single, single, single]
 
 
-def test_cliff_phrase_before_and_after() -> None:
-    """The cliff phrase switches at the November 2026 cliff date."""
-    assert cliff_phrase(PolicyContext(as_of=date(2026, 1, 1))) == (
-        "in force from"
+def test_cliff_phrase_says_deferred_while_no_date_binds() -> None:
+    """With no binding date, nothing is in force whatever ``as_of`` says.
+
+    This is where Swift left it on 27 August 2026. A date past the withdrawn
+    cutover must not produce "since": that would tell a bank the requirement
+    already bites.
+    """
+    for as_of in (date(2026, 1, 1), date(2027, 6, 1)):
+        phrase = cliff_phrase(PolicyContext(as_of=as_of))
+        assert "deferred" in phrase
+        assert "27 August 2026" in phrase
+        assert not phrase.startswith("since")
+
+
+def test_cliff_phrase_before_and_after_a_binding_date(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Once Swift sets a date, the wording turns on it again."""
+    monkeypatch.setattr(base, "BINDING_CUTOVER", date(2027, 11, 13))
+    assert cliff_phrase(PolicyContext(as_of=date(2027, 1, 1))) == (
+        "in force from 13 November 2027"
     )
-    assert cliff_phrase(PolicyContext(as_of=date(2026, 12, 1))) == "since"
+    assert cliff_phrase(PolicyContext(as_of=date(2027, 12, 1))) == (
+        "since 13 November 2027"
+    )
 
 
 def test_iso_structured_limits_cover_all_detail_fields() -> None:

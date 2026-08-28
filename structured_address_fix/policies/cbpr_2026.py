@@ -52,7 +52,7 @@ class Cbpr2026Policy(BasePolicy):
     def assess(
         self, address: CanonicalAddress, ctx: PolicyContext
     ) -> list[RiskFinding]:
-        """Assess ``address`` against the CBPR+ November 2026 cliff."""
+        """Assess ``address`` against the CBPR+ structured address rule."""
         classification = address.classification
         phrase = cliff_phrase(ctx)
 
@@ -74,8 +74,7 @@ class Cbpr2026Policy(BasePolicy):
                 self._finding(
                     FindingCode.UNSTRUCTURED_ONLY,
                     Severity.CRITICAL,
-                    "Unstructured address is rejected "
-                    f"({phrase} 14 November 2026).",
+                    f"Unstructured address is rejected ({phrase}).",
                     "reject_unstructured",
                     rejects_payment=True,
                 ),

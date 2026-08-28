@@ -43,7 +43,7 @@ from typing import ClassVar, Literal, Protocol, runtime_checkable
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from structured_address_fix.config import NOV_2026_CLIFF
+from structured_address_fix.config import BINDING_CUTOVER, CUTOVER_DEFERRED_ON
 from structured_address_fix.domain.address import (
     MAX_ADDRESS_LINE,
     MAX_ADDRESS_LINE_COUNT,
@@ -399,11 +399,24 @@ def compact(
 
 
 def cliff_phrase(ctx: PolicyContext) -> str:
-    """Return cliff wording keyed on ``ctx.as_of`` versus the cliff date.
+    """Return when the requirement applies, as a complete parenthetical.
 
-    ``"in force from"`` before the November 2026 cliff, ``"since"`` on or
-    after it. The finding stands either way; only the wording changes.
+    The whole clause rather than a fragment, because the date and the wording
+    have to agree and a caller pasting its own date beside this cannot keep
+    them in step — which is exactly how "since 14 November 2026" survived that
+    date being withdrawn.
+
+    Three states: no binding date, which is where Swift left it on
+    27 August 2026; a date not yet reached; and a date passed. The finding
+    stands in all three — the requirement was agreed in 2023 and only its
+    timing moved — so this changes what is said about timing, never severity.
     """
-    if ctx.as_of < NOV_2026_CLIFF:
-        return "in force from"
-    return "since"
+    if BINDING_CUTOVER is None:
+        return (
+            "timing deferred by Swift on "
+            f"{CUTOVER_DEFERRED_ON.strftime('%-d %B %Y')}, "
+            "replacement date due by December 2026"
+        )
+    if ctx.as_of < BINDING_CUTOVER:
+        return f"in force from {BINDING_CUTOVER.strftime('%-d %B %Y')}"
+    return f"since {BINDING_CUTOVER.strftime('%-d %B %Y')}"

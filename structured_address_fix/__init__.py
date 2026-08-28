@@ -16,7 +16,7 @@
 """structured-address-fix: ISO 20022 postal-address remediation.
 
 Detects, scores, and remediates non-compliant postal addresses in ISO
-20022 payment messages ahead of the 14 November 2026 cliff, when fully
+20022 payment messages ahead of the structured-address cutover, when fully
 unstructured addresses are rejected across the major cross-border and
 high-value schemes. The public surface is the :mod:`structured_address_fix.
 services` facade; the domain models are re-exported here for convenience.

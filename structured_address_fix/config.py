@@ -27,10 +27,30 @@ from datetime import date
 
 from structured_address_fix.domain.enums import PolicyId
 
-#: The binding global deadline — 14 November 2026 (SWIFT CBPR+ UG2026).
-#: Fedwire's own cutover is 16 November 2026, but the SWIFT date binds
-#: first, so it is the reference used throughout.
-NOV_2026_CLIFF: date = date(2026, 11, 14)
+#: The date SWIFT CBPR+ UG2026 originally set for the structured address
+#: cutover. Retained because it is the date every scheme planned around and
+#: the one users still ask about — not because it binds.
+ANNOUNCED_CUTOVER: date = date(2026, 11, 14)
+
+#: The day Swift accepted a community request to extend the migration and
+#: deferred every payments change in Standards Release 2026.
+#: https://www.swift.com/news-events/news/swift-accepts-community-request-extend-structured-address-migration-iso-20022-payment-messages
+CUTOVER_DEFERRED_ON: date = date(2026, 8, 27)
+
+#: The date the requirement actually binds from, or ``None`` while there is
+#: not one. Swift will confirm replacement timing by December 2026 at the
+#: latest; until it does, no date has force, and reporting one as binding
+#: tells a bank to plan around something that has been withdrawn.
+#:
+#: The requirement itself was agreed by the community in 2023 and stands.
+#: Only its timing moved, so findings are unaffected — a message that would
+#: have been rejected still would be, once the rule takes effect.
+BINDING_CUTOVER: date | None = None
+
+#: Deprecated alias for :data:`ANNOUNCED_CUTOVER`. Kept so that existing
+#: callers keep importing successfully; it names a date that no longer binds,
+#: so prefer :data:`BINDING_CUTOVER` and handle ``None``.
+NOV_2026_CLIFF: date = ANNOUNCED_CUTOVER
 
 #: The default policy applied when a caller does not name one.
 DEFAULT_POLICY_ID: str = PolicyId.CBPR_2026.value
