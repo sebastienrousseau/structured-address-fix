@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.4] - 2026-08-29
+
+Adds the benchmark and drift check this repository was missing, and
+keeps the pair on one version number.
+
+### Added
+
+- `benches/bench_address_pipeline.py` measures the three stages against
+  the shape the November 2026 cutover actually has: screening first,
+  fixing second. `classify` is a sub-microsecond shape test meant to run
+  over the whole estate; `assess` is single-digit microseconds;
+  `remediate` is tens. Two orders of magnitude apart, which is what makes
+  a four-million-address portfolio tractable.
+- The benchmark also records that cost rises with how broken an address
+  is — remediating an unstructured address costs about three times a
+  structured one. Nothing degrades pathologically, but an estate's bill
+  is set by its worst addresses rather than its average.
+- `scripts/check_suite_consistency.py` and a scheduled `Suite
+  Consistency` workflow comparing this tree, and
+  `structured-address-fix-mcp`, against PyPI.
+
+### Changed
+
+- Version moved to `0.0.4` in step with `structured-address-fix-mcp`.
+  The two ship as a pair and are kept on one number deliberately, so the
+  bump happens on both even when only one of them changed.
+
 ## [0.0.2] - 2026-07-17
 
 ### Changed
