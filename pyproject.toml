@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "structured-address-fix"
-version = "0.0.4"
+version = "0.0.5"
 description = "ISO 20022 structured-address remediation and payment-rejection prevention for the November 2026 cliff."
 authors = ["Sebastien Rousseau <sebastian.rousseau@gmail.com>"]
 license = "Apache-2.0 OR MIT"
@@ -96,6 +96,7 @@ ignore = ["E501"]
 "benches/*.py" = ["E402"]
 "__init__.py" = ["F401"]
 "tests/conftest.py" = ["E402"]
+"tests/test_suite_conformance.py" = ["UP036"]
 
 [tool.ruff.format]
 quote-style = "double"
