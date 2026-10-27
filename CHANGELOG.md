@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Security
+
+- The release tooling (`requirements/build.txt`) floors `virtualenv >=
+  21.14.13` (GHSA-cx6f-vjhg-g3cc and the PYSEC-2026-4011 to 4014 line; it
+  pinned 21.6.1), `filelock >= 4.2.1` (GHSA-9vhv-jxww-xfm5,
+  GHSA-567q-5qvw-pf92, GHSA-v4x8-3wr5-3wq8; it pinned 3.30.3), `urllib3 >=
+  2.8.0` and `certifi >= 2026.10.19` (PYSEC-2026-4320); the docs tree floors
+  urllib3 and certifi too. Black moves to 26.10.1 (CVE-2026-114134).
+- The release SBOM job points `cyclonedx-py environment` and `pip-licenses`
+  at the Poetry venv (`poetry env info --executable`). Run through `poetry
+  run`, they described their own interpreter, so the SBOM listed the SBOM
+  tooling instead of the runtime set.
+
 ## [0.0.4] - 2026-08-29
 
 Adds the benchmark and drift check this repository was missing, and
