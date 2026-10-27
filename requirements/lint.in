@@ -7,5 +7,6 @@ pydantic>=2.9,<3
 defusedxml>=0.7,<0.8
 xmlschema>=3.4,<5
 ruff==0.16.10
-black==26.10.0
+# CVE-2026-114134 affects black before 26.10.1.
+black==26.10.1
 mypy>=1.11,<3.0
