@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.6] - 2026-11-05
+
+### Changed
+
+- Version moves to `0.0.6` in lockstep with `structured-address-fix-mcp`
+  0.0.6, which was published on 2026-10-04 while this core stayed at
+  0.0.4 on PyPI. With both packages on 0.0.6 the scheduled Suite
+  Consistency check agrees again, and the server no longer leads its core.
+  No code changes beyond the version.
+
 ## [0.0.5] - 2026-10-03
 
 ### Changed
@@ -22,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   GHSA-567q-5qvw-pf92, GHSA-v4x8-3wr5-3wq8; it pinned 3.30.3), `urllib3 >=
   2.8.0` and `certifi >= 2026.10.19` (PYSEC-2026-4320); the docs tree floors
   urllib3 and certifi too. Black moves to 26.10.1 (CVE-2026-114134).
+- `requirements/build.in` floors `msgpack >= 1.2.3` (CVE-2026-114613; the
+  build tree pinned 1.2.1 through poetry and cachecontrol) and `certifi >=
+  2026.10.23`; the docs tree floors `mkdocs-material >= 9.8.0`.
 - The release SBOM job points `cyclonedx-py environment` and `pip-licenses`
   at the Poetry venv (`poetry env info --executable`). Run through `poetry
   run`, they described their own interpreter, so the SBOM listed the SBOM
